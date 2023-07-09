@@ -16,7 +16,33 @@
         <label for="message">Message</label>
         <textarea  name="message" placeholder="Write something.." style="height:200px"></textarea>
     
-        <input type="submit" value="Submit">
+        <input type="submit" id="submitbtn" value="Submit">
       </form>
 </body>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+  
+  <script>
+    var btn = document.getElementById('submitbtn');
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('hi');
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var message = document.getElementById('message').value;
+      var body = '<b>Name : </b>' + name + '<br/><b>Email : </b>' + email +
+      '<br/><b>Message or Queries : </b>' + message ;
+      console.log(body);
+
+          Email.send({
+          Host : "smtp.elasticemail.com",
+          Username : "jayambesanitaryware01@gmail.com",
+          Password : "213CC58C4D73C9C4208C110BEE66838B6D1F",
+          To : 'jayambesanitaryware01@gmail.com',
+          From : email,
+          Subject : "This is the Subject regarding Queries",
+          Body : body
+      }).then(
+        message => alert(message)
+      );
 </html>
